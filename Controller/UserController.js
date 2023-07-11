@@ -1,7 +1,6 @@
 let user = require('../Database/User');
 
 const registerUser = async (req, res) => {
-  console.log(user);
   try {
     let result = await user.create({
       name: req.body.name,
@@ -20,13 +19,29 @@ const registerUser = async (req, res) => {
   }
 };
 const registerUserFind = async (req, res) => {
-  console.log(user);
   try {
     let result = await user.find({
       name: req.body.name,
-      password: req.body.password,
     });
-
+    if (result[0].password === req.body.password) {
+      res.status(200).json({
+        value: 'success',
+        result,
+      });
+    } else {
+      res.status(200).json({
+        value: 'Passwords do not match',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  }
+};
+const deleteRegisterUser = async (req, res) => {
+  try {
+    let result = await user.deleteMany();
     res.status(200).json({
       value: 'success',
       result,
@@ -37,4 +52,5 @@ const registerUserFind = async (req, res) => {
     });
   }
 };
-module.exports = { registerUser };
+
+module.exports = { registerUser, registerUserFind, deleteRegisterUser };

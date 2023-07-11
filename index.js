@@ -3,10 +3,15 @@ let mongoose = require('mongoose');
 const express = require('express');
 const dot = require('dotenv');
 const morgan = require('morgan');
+let Cors = require('cors');
 dot.config();
 const app = express();
 app.use(express.json());
-
+app.use(
+  Cors({
+    origin: '*',
+  })
+);
 // const app = require('./Routes/Userroutes');
 app.use('/api', require('./Routes/Userroutes'));
 app.use(morgan('dev'));
