@@ -52,5 +52,22 @@ const deleteRegisterUser = async (req, res) => {
     });
   }
 };
-
-module.exports = { registerUser, registerUserFind, deleteRegisterUser };
+const findRegisterUser = async (req, res) => {
+  try {
+    let result = await user.find({});
+    res.status(200).json({
+      value: 'success',
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  }
+};
+module.exports = {
+  registerUser,
+  registerUserFind,
+  deleteRegisterUser,
+  findRegisterUser,
+};
