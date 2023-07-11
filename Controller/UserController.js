@@ -29,7 +29,7 @@ const registerUserFind = async (req, res) => {
         result,
       });
     } else {
-      res.status(401).json({
+      res.status(201).json({
         value: 'Passwords do not match',
       });
     }
