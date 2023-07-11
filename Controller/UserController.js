@@ -56,7 +56,6 @@ const findRegisterUser = async (req, res) => {
   try {
     let result = await user.find({});
     res.status(200).json({
-      value: 'success',
       result,
     });
   } catch (error) {
