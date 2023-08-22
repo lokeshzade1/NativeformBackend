@@ -14,6 +14,9 @@ app.use(
 );
 // const app = require('./Routes/Userroutes');
 app.use('/api', require('./Routes/Userroutes'));
+app.use('/api', require('./Routes/UserInstaSignup'));
+app.use('/api', require('./Routes/UserInstalogin'));
+app.use('/api', require('./Routes/UserFollowing'));
 app.use(morgan('dev'));
 mongoose
   .connect(process.env.ID, {
