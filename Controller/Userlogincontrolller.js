@@ -1,11 +1,13 @@
 let login = require('../Database/login');
 let user = require('../Database/user');
 const loginUser = async (req, res) => {
+  const expirationTime = new Date(Date.now() + 60000);
   try {
     let result = await login.create({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
+      expireAt: expirationTime,
     });
 
     res.status(200).json({
